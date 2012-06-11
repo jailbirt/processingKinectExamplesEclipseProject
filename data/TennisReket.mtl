@@ -1,0 +1,56 @@
+# Max2Mtl Version 4.0 Mar 10th, 2001
+#
+# Multi/Sub Material__43 (6) to come 
+#
+newmtl BLACK_PLSTC1
+Ka  0.0 0.0 0.0
+Kd  0.0 0.0 0.0
+Ks  1.0 1.0 1.0
+d  1.0
+Ns  10.0
+illum 2
+#
+newmtl JAS
+Ka  0.0 0.0 0.0
+Kd  0.0 0.0 0.0
+Ks  1.0 1.0 1.0
+d  1.0
+Ns  3.1
+illum 2
+#
+newmtl 4
+Ka  0.0 0.0 0.0
+Kd  0.1 0.1 0.0
+Ks  0.1 0.1 0.0
+d  1.0
+Ns  1.8
+illum 2
+bump GRILL.tga
+#
+newmtl 5
+Ka  0.0 0.0 0.0
+Kd  0.0 0.0 0.0
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  10.0
+illum 2
+#
+newmtl WHITE_PLASTIC
+Ka  0.7 0.7 0.7
+Kd  0.7 0.7 0.7
+Ks  1.0 1.0 1.0
+d  1.0
+Ns  7.3
+illum 2
+#
+newmtl WHITE_PLSTC2
+Ka  0.9 0.9 0.9
+Kd  0.9 0.9 0.9
+Ks  1.0 1.0 1.0
+d  1.0
+Ns  10.0
+illum 2
+#
+# Multi/Sub Material__43 done 
+#
+# EOF
