@@ -30,7 +30,7 @@ public class loadObjIntoCloud extends PApplet {
     	}
 
     public void draw() {
-    	background(255);
+    	background(0);
     	kinect.update();
     	
     	translate(width/2, height/2, -1000); //2
@@ -50,17 +50,24 @@ public class loadObjIntoCloud extends PApplet {
     	  // of the model
     	  //rotateX(rotateY);
     	  //rotateY(rotateX);
-    	  //Esto es porque los programas de edicion manejan otros ejes.
     	  rotateY(radians(-90)); //4
     	  rotateX(radians(-180));
-    	  //rotateZ(radians(90));
     	  model.draw();
     	popMatrix();
-    	stroke(0);
+    	stroke(255);
 
     	PVector[] depthPoints = kinect.depthMapRealWorld();
     	for (int i = 0; i < depthPoints.length; i+=10) {
     		PVector currentPoint = depthPoints[i];
+    		if ((i%100)==0) { //multiplo de 100 dibujo la linea.
+    		  // draw the lines darkly with alpha
+    		  stroke(100, 30);
+    		  line(0,0,0, currentPoint.x, currentPoint.y, currentPoint.z);
+    		}
+    		// draw the dots bright green
+    		stroke(random(255),random(255),random(255));
+    		point(currentPoint.x, currentPoint.y, currentPoint.z);
+
     		point(currentPoint.x, currentPoint.y, currentPoint.z);
     	}
 
