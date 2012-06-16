@@ -6,12 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="libs/core.jar"/>
-	<classpathentry kind="lib" path="libs/simpleOpenNi/SimpleOpenNI.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectTemplate/libs/simpleOpenNi/library"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="libs/core.jar" sourcepath="libs/core.jar"/>
 	<classpathentry kind="lib" path="libs/openGL/gluegen-rt.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectTemplate/libs/openGL/linux64"/>
@@ -35,5 +30,10 @@
 	<classpathentry kind="lib" path="libs/processing/net/Client.class"/>
 	<classpathentry kind="lib" path="libs/processing/net/Server.class"/>
 	<classpathentry kind="lib" path="libs/net/net.jar"/>
+	<classpathentry kind="lib" path="libs/simpleOpenNi/SimpleOpenNI.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectExamples/libs/simpleOpenNi/library/library"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

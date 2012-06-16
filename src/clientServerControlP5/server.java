@@ -33,7 +33,7 @@ public class server extends PApplet {
 	    input = input.substring(0, input.indexOf("\n")); // Only up to the newline
 	    
 	    //split del string obtenido. java hace algo raro...
-	    //     data = int(split(input, ' ')); // Split values into an array
+	         data = int (split(input, ' ')); // Split values into an array
 
 	    String[] tempStr = split(input, ' ');
 	    for (int i=0;i< tempStr.length;i++) {	
