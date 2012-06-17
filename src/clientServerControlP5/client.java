@@ -5,7 +5,7 @@ import processing.core.*;
 public class client extends PApplet {
 	Client c;
 	String input;
-	int data[];
+	String[] data;
 
 	public void setup() 
 	{
@@ -30,15 +30,13 @@ public class client extends PApplet {
 	  if (c.available() > 0) {
 	    input = c.readString();
 	    input = input.substring(0, input.indexOf("\n")); // Only up to the newline
-	    //split del string obtenido.
-	    String[] tempStr = split(input, ' ');
-	    for (int i=0;i< tempStr.length;i++) {	
-	        data[i] = Integer.parseInt(tempStr[i]); // Split values into an array
-	    }
+	  //split del string obtenido. java hace algo raro...
+        data =  (split(input, ' ')); // Split values into an array
+
 	    //
 	    // Draw line using received coords
 	    stroke(0);
-	    line(data[0], data[1], data[2], data[3]);
+	    line(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]),parseInt(data[3]));
 	  }
 	}
 }
