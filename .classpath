@@ -27,8 +27,6 @@
 	<classpathentry kind="lib" path="libs/minim/tritonus_share.jar"/>
 	<classpathentry kind="lib" path="libs/OBJLoader/library/OBJLoader.jar"/>
 	<classpathentry kind="lib" path="libs/peasycam/library/peasycam.jar"/>
-	<classpathentry kind="lib" path="libs/processing/net/Client.class"/>
-	<classpathentry kind="lib" path="libs/processing/net/Server.class"/>
 	<classpathentry kind="lib" path="libs/net/net.jar"/>
 	<classpathentry kind="lib" path="libs/simpleOpenNi/SimpleOpenNI.jar">
 		<attributes>

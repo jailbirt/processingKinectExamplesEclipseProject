@@ -32,9 +32,7 @@ public class server extends PApplet {
 	    input = c.readString();
 	    input = input.substring(0, input.indexOf("\n")); // Only up to the newline
 	    
-	    //split del string obtenido. java hace algo raro...
-	         data =  (split(input, ' ')); // Split values into an array
-
+	                                                                                                       
 	    
 	        // Draw line using received coords
 	    stroke(0);
