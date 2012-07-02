@@ -38,16 +38,14 @@ public class simpleTracking extends PApplet {
 				// put the position of the left hand into that vector
 				// 1 es hiper confiable, 0 es nada confiable.
 				// confidence es lo que reporta como retorno del metodo.
-				float confidence = kinect.getJointPositionSkeleton(userId,
-						SimpleOpenNI.SKEL_LEFT_HAND, rightHand);
+				float confidence = kinect.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_LEFT_HAND, rightHand);
 				// convert the detected hand position
 				// to "projective" coordinates
 				// that will match the depth image
 				PVector convertedRightHand = new PVector();
 				//Proyecto en 2d ( saco Z ) lo que veo en 3d.
 				// como si siguiera con el dedo algo que pasa del otro lado del vidrio.
-				kinect.convertRealWorldToProjective(rightHand,
-						convertedRightHand);
+				kinect.convertRealWorldToProjective(rightHand, convertedRightHand);
 				// and display it
 				fill(255, 0, 0);
 				//uso z para 'escalar' el circulo.
