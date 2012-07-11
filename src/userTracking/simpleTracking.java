@@ -12,7 +12,7 @@ public class simpleTracking extends PApplet {
 		kinect.enableDepth();
 		// turn on user tracking
 		kinect.enableUser(SimpleOpenNI.SKEL_PROFILE_ALL);
-    background(0);
+        background(0);
 	}
 
 	public void draw() {

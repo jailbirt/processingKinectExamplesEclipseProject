@@ -53,7 +53,7 @@ public class hotPoint extends PApplet {
     }
 
     public void draw(VirtualDrum parent)
-    {
+    { 
         parent.pushMatrix();//isolate coordinate system manipulation
         parent.translate(center.x, center.y, center.z);
         parent.fill(parent.red(fillColor),parent.green(fillColor),parent.blue(fillColor), 255 * percentIncluded());

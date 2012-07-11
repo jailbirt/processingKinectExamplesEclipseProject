@@ -9,7 +9,7 @@
 	<classpathentry kind="lib" path="libs/core.jar" sourcepath="libs/core.jar"/>
 	<classpathentry kind="lib" path="libs/openGL/gluegen-rt.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectTemplate/libs/openGL/linux64"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectExamples/libs/openGL/linux64"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/openGL/jogl.jar">
@@ -17,7 +17,11 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectTemplate/libs/openGL/linux64"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/openGL/opengl.jar"/>
+	<classpathentry kind="lib" path="libs/openGL/opengl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectExamples/libs/openGL/linux64"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="libs/minim/jl1.0.jar"/>
 	<classpathentry kind="lib" path="libs/minim/jsminim.jar"/>
 	<classpathentry kind="lib" path="libs/minim/minim-spi.jar"/>
@@ -33,5 +37,9 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectExamples/libs/simpleOpenNi/library/library"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/toxicLibs/toxiclibs_p5/library/toxiclibs_p5.jar"/>
+	<classpathentry kind="lib" path="libs/controlP5/library/controlP5.jar"/>
+	<classpathentry kind="lib" path="libs/toxicLibs/toxiclibscore/library/toxiclibscore.jar"/>
+	<classpathentry kind="lib" path="libs/openGL/linux64/libgluegen-rt.so"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
