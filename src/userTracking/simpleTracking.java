@@ -4,8 +4,10 @@ import SimpleOpenNI.*;
 import processing.core.*;
 
 public class simpleTracking extends PApplet {
-	SimpleOpenNI kinect;
-
+	protected SimpleOpenNI kinect;
+//	protected simpleTracking thisO;//y singleton ?  y syncronized ?
+    private skelleton skell;// la resp. de la subClase skelleton es dibujarlo.
+	
 	public void setup() {
 		size(640, 480);
 		kinect = new SimpleOpenNI(this,SimpleOpenNI.RUN_MODE_MULTI_THREADED);
@@ -13,6 +15,7 @@ public class simpleTracking extends PApplet {
 		// turn on user tracking
 		kinect.enableUser(SimpleOpenNI.SKEL_PROFILE_ALL);
         background(0);
+        skell=new skelleton(this,kinect);
 	}
 
 	public void draw() {
@@ -21,8 +24,8 @@ public class simpleTracking extends PApplet {
 		PImage depth = kinect.depthImage();
 		image(depth, 0, 0);
 		// make a vector of ints to store the list of users
-    // Salva la data con un orden fijo ( distinto a PVector que tiene x,y,z values )
-    // Puede crecer dinamicamente.
+        // Salva la data con un orden fijo ( distinto a PVector que tiene x,y,z values )
+        // Puede crecer dinamicamente.
 		IntVector userList = new IntVector();
 		// write the list of detected users
 		// into our vector
@@ -33,11 +36,13 @@ public class simpleTracking extends PApplet {
 			int userId = userList.get(0);
 			// if we’re successfully calibrated
 			if (kinect.isTrackingSkeleton(userId)) {
+				
+			//DETECCION Y DIBUJO DE ELEMENTO EN MANO
 				// make a vector to store the left hand, el kinect esta enfrentado.
 				PVector rightHand = new PVector();
 				// put the position of the left hand into that vector
-				// 1 es hiper confiable, 0 es nada confiable.
 				// confidence es lo que reporta como retorno del metodo.
+				// 1 es hiper confiable, 0 es nada confiable.
 				float confidence = kinect.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_LEFT_HAND, rightHand);
 				// convert the detected hand position
 				// to "projective" coordinates
@@ -51,12 +56,13 @@ public class simpleTracking extends PApplet {
 				//uso z para 'escalar' el circulo.
 				float ellipseSize = map(convertedRightHand.z, 700, 2500, 50,1);
 		        //700 es el numero màs chico y 2500 el màs grande que puedo ver de z.
-				if ( confidence > 0.7 ){ //si es un valor aceptable dibujo, sino no ( para que no dibuje basura).
+				if ( confidence > 0.9f ){ //si es un valor aceptable dibujo, sino no ( para que no dibuje basura).
 				 println("La confianza es de "+confidence);
 				 ellipse(convertedRightHand.x, convertedRightHand.y,
 				 ellipseSize, ellipseSize);
 				}		
-
+            // ACA EN ADELANTE DIBUJO ESQUELETO.
+				skell.drawSkeleton(userId);
 			}
 		}
 	}

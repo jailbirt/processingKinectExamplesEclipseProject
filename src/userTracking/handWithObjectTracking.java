@@ -9,7 +9,7 @@ public class handWithObjectTracking extends PApplet {
 	float objscale ;
     OBJModel model1; 
     OBJModel model2; 
-    controlPanel    controlPanel;
+    controlWindow  controlPanel;
 	
 	public void setup() {
 		 size(1024, 768, OPENGL);
@@ -28,15 +28,15 @@ public class handWithObjectTracking extends PApplet {
 	      model1 = new OBJModel(this, "data/Ball.obj", "relative", TRIANGLES);
 	      model1.translateToCenter();
 	    //  controlPanel = new controlPanel((PApplet)this);
-	    controlPanel = new controlPanel(this);
+	    controlPanel = new controlWindow(this);
 	}
 	public void draw() {
 	    background(255);
         kinect.update();
-	    //PImage depth = kinect.depthImage();
-	    //image(depth, 0, 0);
-	    PImage rgb= kinect.rgbImage();
-	    image(rgb,0,0);
+	    PImage depth = kinect.depthImage();
+	    image(depth, 0, 0);
+	    //PImage rgb= kinect.rgbImage();
+	    //image(rgb,0,0);
 	    // make a vector of ints to store the list of users
 	    controlPanel.draw();
 	    IntVector userList = new IntVector();

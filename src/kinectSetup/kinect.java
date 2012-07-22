@@ -5,7 +5,7 @@ import java.util.Iterator;
 import processing.core.*;
 import SimpleOpenNI.* ;
 import toxi.geom.*;
-import userTracking.controlPanel;
+
 
 public class kinect extends PApplet {
 	public float   xmin = -1000;
@@ -39,7 +39,7 @@ public class kinect extends PApplet {
 	float rotY  = 0;
 
 	kinectUtilities kinectUtilities = new kinectUtilities(this);
-	controlPanel    controlPanel;
+	
 	
 	Particles      par = new Particles (this);
 	Bands          band;
