@@ -7,22 +7,41 @@ public class simpleTracking extends PApplet {
 	protected SimpleOpenNI kinect;
 //	protected simpleTracking thisO;//y singleton ?  y syncronized ?
     private skelleton skell;// la resp. de la subClase skelleton es dibujarlo.
+	private sphere sphere; //resp. de la subClase es dibujar la esfera.
+	private Visual2dParticles particles; //resp. de la subclase es dibujar las Particulas!
+	private jointDistance jointDistance;
+	private int width;
+	private int height;
+	
+	public simpleTracking () {
+	    width=640;
+	    height=480;
+	}
 	
 	public void setup() {
-		size(640, 480);
+		
 		kinect = new SimpleOpenNI(this,SimpleOpenNI.RUN_MODE_MULTI_THREADED);
 		kinect.enableDepth();
 		// turn on user tracking
 		kinect.enableUser(SimpleOpenNI.SKEL_PROFILE_ALL);
         background(0);
         skell=new skelleton(this,kinect);
+        sphere=new sphere(this,kinect);
+        particles=new Visual2dParticles(this,kinect,jointDistance);
+        jointDistance= new jointDistance(this,kinect);
+        size(width,height);
+		stroke(255,0,0);
+        strokeWeight(5);
+        textSize(20);
+        
 	}
 
 	public void draw() {
 	  // update the cam
 		kinect.update();
-		PImage depth = kinect.depthImage();
-		image(depth, 0, 0);
+	//	PImage depth = kinect.depthImage();
+		//image(depth, 0, 0);
+		background(0); // quiero que el background no sea el de kinect sino negro.
 		// make a vector of ints to store the list of users
         // Salva la data con un orden fijo ( distinto a PVector que tiene x,y,z values )
         // Puede crecer dinamicamente.
@@ -35,34 +54,15 @@ public class simpleTracking extends PApplet {
 			// get the first user
 			int userId = userList.get(0);
 			// if we’re successfully calibrated
-			if (kinect.isTrackingSkeleton(userId)) {
-				
-			//DETECCION Y DIBUJO DE ELEMENTO EN MANO
-				// make a vector to store the left hand, el kinect esta enfrentado.
-				PVector rightHand = new PVector();
-				// put the position of the left hand into that vector
-				// confidence es lo que reporta como retorno del metodo.
-				// 1 es hiper confiable, 0 es nada confiable.
-				float confidence = kinect.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_LEFT_HAND, rightHand);
-				// convert the detected hand position
-				// to "projective" coordinates
-				// that will match the depth image
-				PVector convertedRightHand = new PVector();
-				//Proyecto en 2d ( saco Z ) lo que veo en 3d.
-				// como si siguiera con el dedo algo que pasa del otro lado del vidrio.
-				kinect.convertRealWorldToProjective(rightHand, convertedRightHand);
-				// and display it
-				fill(255, 0, 0);
-				//uso z para 'escalar' el circulo.
-				float ellipseSize = map(convertedRightHand.z, 700, 2500, 50,1);
-		        //700 es el numero màs chico y 2500 el màs grande que puedo ver de z.
-				if ( confidence > 0.9f ){ //si es un valor aceptable dibujo, sino no ( para que no dibuje basura).
-				 println("La confianza es de "+confidence);
-				 ellipse(convertedRightHand.x, convertedRightHand.y,
-				 ellipseSize, ellipseSize);
-				}		
-            // ACA EN ADELANTE DIBUJO ESQUELETO.
-				skell.drawSkeleton(userId);
+			if (kinect.isTrackingSkeleton(userId)) {				
+			    // dibujo de esfera en la mano izquierda
+			    sphere.drawRightHandSphere(userId);
+			    jointDistance.calculateJointsDistance(userId); //calcula la distancia.
+			    jointDistance.drawLinebetweenNodes(userId);
+                // dibujo el esqueleto.
+				skell.drawKinectApiLines(userId);
+				skell.drawJoints(userId);
+				particles.drawParticles();
 			}
 		}
 	}
@@ -100,4 +100,14 @@ public class simpleTracking extends PApplet {
 		kinect.requestCalibrationSkeleton(userId, true);
 	}
 
+	// Para que salga windowed 
+	 public void keyPressed(){
+	        if(key == 'f') exitFullscreen();
+	    }
+	  private void exitFullscreen() {
+	        frame.setBounds(0,0,width,height);
+	        setBounds((screenWidth - width) / 4,(screenHeight - height) / 4,width, height);
+	        frame.setLocation((screenWidth - width) / 4,(screenHeight - height) / 4);
+	        setLocation((screenWidth - width) / 4,(screenHeight - height) / 4);
+	    }
 }
