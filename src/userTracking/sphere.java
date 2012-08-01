@@ -8,7 +8,7 @@ public class sphere extends PApplet {
 	private PApplet parent;
 	private SimpleOpenNI kinect;
 	
-	public sphere (simpleTracking parentO, SimpleOpenNI parentKinectO) {
+	public sphere (PApplet parentO, SimpleOpenNI parentKinectO) {
 		parent=parentO;
 		kinect=parentKinectO;
 	}
