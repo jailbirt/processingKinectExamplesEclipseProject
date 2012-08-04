@@ -40,7 +40,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/peasycam/library/peasycam.jar"/>
 	<classpathentry kind="lib" path="libs/net/net.jar"/>
-	<classpathentry kind="lib" path="libs/simpleOpenNi/SimpleOpenNI.jar">
+	<classpathentry kind="lib" path="libs/simpleOpenNi/SimpleOpenNI.jar" sourcepath="libs/simpleOpenNi">
 		<attributes>
 			<attribute name="javadoc_location" value="http://simple-openni.googlecode.com/svn/trunk/SimpleOpenNI/dist/all/SimpleOpenNI/documentation/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="processingKinectExamples/libs/simpleOpenNi/library/library"/>

@@ -22,11 +22,11 @@ public class skelleton extends PApplet {
 		this.drawKinectApiLines(userId); //los propios de la api, de donde a donde dibujar.
 		parent.noStroke();
 		parent.fill(255, 0, 0);
-//		this.drawJoints(userId);         //aca dibujo circulo para cada punto, como referencia.
-		
+//		this.drawJoints(userId);         //aca dibujo circulo para cada punto, como refere
 	}
 	
 	public void drawKinectApiLines (int userId) {
+		//si quiero usar proyeccion en lugar de  this drawlimb es drawlimb a secas.
 		this.drawLimb(userId, SimpleOpenNI.SKEL_HEAD,
 				SimpleOpenNI.SKEL_NECK);// 1 Es parte de la api, por eso directamente dibujo las lineas que conectan.
 		this.drawLimb(userId, SimpleOpenNI.SKEL_NECK,
@@ -136,6 +136,15 @@ public class skelleton extends PApplet {
 		   parent.stroke(0, 0, 255);
 		   parent.line(0, 0, 0, 0, 0, 150);
 	}
-
+	/* creo que la matrix queda por lo que pasa arriba.. 
+	public void render3dObj(PVector position, PMatrix3D orientation, objectFromObj obj) {
+		// TODO Auto-generated method stub
+		 // move to the position of the TORSO, in an isolated sistema de coordenadas.
+		   parent.translate(position.x, position.y, position.z);
+		   // adopt the TORSO’s orientation
+		   // to be our coordinate system
+		   parent.applyMatrix(orientation);//3
+	}
+	*/
 
 }

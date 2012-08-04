@@ -4,26 +4,13 @@ import processing.core.*;
 import processing.opengl.*;
 
 public class DistinguishUserFromBackground extends PApplet {
-	protected SimpleOpenNI kinect;
+	 protected SimpleOpenNI kinect;
+	 private boolean background, mirror;
 	PImage userImage;
 	int userID;
 	int[] userMap; // Array de enteros de users.
 	PImage rgbImage;
 	
-	//Esto es para redefinir el frame ( solo si existe ) ;)
-	public void init(){
-        if(frame!=null){
-          frame.removeNotify();//make the frame displayable
-          frame.setResizable(true); //resizable
-          frame.setSize(1024,800); //el tamaño del container.
-          frame.setUndecorated(false);
-          frame.setTitle("PApplet!");
-          println("frame is at "+frame.getLocation());
-          frame.addNotify();
-          
-        }
-        super.init();
-  }
 	public void setup() {
 		size(640, 480, OPENGL);
 		kinect = new SimpleOpenNI(this,SimpleOpenNI.RUN_MODE_MULTI_THREADED);
@@ -52,10 +39,49 @@ public class DistinguishUserFromBackground extends PApplet {
 			updatePixels(); // 8
 		}
 	}
+	// user-tracking callbacks!
+		public void onNewUser(int userId) {
+		  println("onNewUser - userId: " + userId);
+		  println("  start pose detection");
+			kinect.startPoseDetection("Psi", userId);
+		}
+		public void onLostUser(int userId)
+		{
+		  println("onLostUser - userId: " + userId);
+		}
+		public void onStartCalibration(int userId)
+		{
+		  println("onStartCalibration - userId: " + userId);
+		}
 
-	public void onNewUser(int uID) {
-		userID = uID;
-		println("tracking");
-	}
-	
+		public void onEndCalibration(int userId, boolean successful) {
+		  println("onEndCalibration - userId: " + userId + ", successfull: " + successful);
+			if (successful) {
+				println(" User calibrated !!!");
+				kinect.startTrackingSkeleton(userId);
+			} else {
+				println(" Failed to calibrate user !!!");
+				kinect.startPoseDetection("Psi", userId);
+			}
+		}
+
+		public void onStartPose(String pose, int userId) {
+		  println("onStartPose - userId: " + userId + ", pose: " + pose);
+		  println(" stop pose detection");
+			kinect.stopPoseDetection(userId);
+			kinect.requestCalibrationSkeleton(userId, true);
+		}
+
+		// Para que salga windowed 
+		 public void keyPressed(){
+		        if(key == 'b') background=inverseBoolean(background);   
+		        if(key == 'm') mirror=inverseBoolean(mirror); 
+		 }
+			// UTIL
+			public boolean inverseBoolean(boolean b) {
+				if (b == true)
+					return false;
+				else
+					return true;
+			}
 }

@@ -2,8 +2,11 @@ package userTracking;
 import SimpleOpenNI.*;
 import processing.core.*;
 
-//La responsabilidad de esta clase es dibujar una esfera en la mano izquierda.
 
+/**
+ * @author jailbirt
+ *La responsabilidad de esta clase es dibujar una esfera en la mano izquierda.
+ */
 public class sphere extends PApplet {
 	private PApplet parent;
 	private SimpleOpenNI kinect;
